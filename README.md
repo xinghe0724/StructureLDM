@@ -7,7 +7,6 @@
 
 ###### Accepted by [IEEE TVCG](https://www.computer.org/csdl/journal/tg)
 
-###### [[Paper & Supplemental Material]](https://arxiv.org/abs/2306.05911) &nbsp;&nbsp;&nbsp;&nbsp; [[Dataset & Code]](https://github.com/dengyuhk/Sketch2Stress)
 
 <img src="img/teaser_stress.jpg" alt="teaser_stress" style="zoom:12%;" />
 
