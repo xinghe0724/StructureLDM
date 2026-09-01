@@ -12,7 +12,7 @@
 
 <img src="img/fig1.png" alt="teaser_stress" style="zoom:12%;" />
 
-**Fig. 1 **: Our StructureLDM enables fast, interactive structural analysis across various sketch-based application scenarios by allowing
+**Fig. 1**: Our StructureLDM enables fast, interactive structural analysis across various sketch-based application scenarios by allowing
 users to apply forces (red dots) directly on the sketch. (a) shows sketch-based structural analysis for identifying the weak regions (warmer
 colors) on the sketched structure. (b) illustrates how our StructureLDM supports users perform structural refinement on these weak regions
 of sketches: the upper row presents the progressively refined sketches, while the bottom row shows corresponding stress maps computed by
