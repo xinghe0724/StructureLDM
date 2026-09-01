@@ -1,94 +1,215 @@
-# *StructureLDM:*  A Latent Diffusion Model for Sketch-based Structural Analysis 
-###### [**Deng Yu**](https://scholar.google.com/citations?user=Yi4KFWwAAAAJ&hl=en)&nbsp;&nbsp; [**Guangtao Liu**]() &nbsp;&nbsp; [**Lin Jiao**]() &nbsp;&nbsp;  [**Yujie Liu***]()&nbsp;&nbsp; [**Zhumin Chen**]() &nbsp;&nbsp; [**Wanchao Su**]() &nbsp;&nbsp;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StructureLDM: A Latent Diffusion Model for Sketch‑based Structural Analysis</title>
+<style>
+*{box-sizing:border-box;}
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans‑serif;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  line-height: 1.6;
+  color:#222;
+}
+h1 {
+  font-size:1.8rem;
+  text-align:center;
+  margin-bottom:1rem;
+}
+.authors {
+  text-align:center;
+  margin-bottom:0.6rem;
+  font-size:1.05rem;
+}
+.affiliations {
+  text-align:center;
+  font-size:0.95rem;
+  color:#444;
+  margin-bottom:1rem;
+}
+.conf {
+  text-align:center;
+  margin-bottom:2.2rem;
+}
+section {
+  margin: 2.4rem 0;
+}
+h2 {
+  font-size:1.4rem;
+  border-bottom:1px solid #ddd;
+  padding-bottom:0.3rem;
+}
+figure {
+  margin:1.6rem 0;
+  text-align:center;
+}
+figure img {
+  max-width:100%;
+  height:auto;
+}
+figcaption {
+  font-size:0.92rem;
+  color:#333;
+  margin-top:0.5rem;
+}
+video {
+  max-width:100%;
+}
+pre.bib {
+  background:#f6f6f6;
+  padding:1rem;
+  overflow-x:auto;
+  font-size:0.9rem;
+}
+</style>
+</head>
+<body>
 
-######  1 School of Artificial Intelligence, Shandong University, Shandong, China
-######  2 Qingdao Institute of Software, College of Computer Science and Technology, China University of Petroleum (East China), Shandong Key Laboratory of Intelligent Oil and Gas Industrial Software, China
-######  3 SensiLab, Faculty of Information Technology, Monash University, Melbourne, Australia
+<h1>StructureLDM: A Latent Diffusion Model for Sketch‑based Structural Analysis</h1>
 
-###### * Corresponding author
+<div class="authors">
+<a href="https://scholar.google.com/citations?user=Yi4KFWwAAAAJ&hl=en">Deng Yu</a> &nbsp;&nbsp;
+Guangtao Liu &nbsp;&nbsp;
+Lin Jiao &nbsp;&nbsp;
+Yujie Liu* &nbsp;&nbsp;
+Zhumin Chen &nbsp;&nbsp;
+Wanchao Su
+</div>
 
-###### Accepted by [PG 20206](https://pacificgraphics2026.github.io/)
+<div class="affiliations">
+1 School of Artificial Intelligence, Shandong University, Shandong, China<br>
+2 Qingdao Institute of Software, College of Computer Science and Technology, China University of Petroleum (East China), Shandong Key Laboratory of Intelligent Oil and Gas Industrial Software, China<br>
+3 SensiLab, Faculty of Information Technology, Monash University, Melbourne, Australia<br>
+* Corresponding author
+</div>
+
+<div class="conf">
+Accepted by <a href="https://pacificgraphics2026.github.io/">PG 2026</a>
+</div>
 
 
-<img src="img/fig1.png" alt="teaser_stress" style="zoom:12%;" />
-
-**Fig. 1**: Our StructureLDM enables fast, interactive structural analysis across various sketch-based application scenarios by allowing
-users to apply forces (red dots) directly on the sketch. (a) shows sketch-based structural analysis for identifying the weak regions (warmer
+<figure>
+<img src="img/fig1.png" alt="teaser_stress" width="950">
+<figcaption>
+<strong>Fig. 1</strong>: Our StructureLDM enables fast, interactive structural analysis across various sketch‑based application scenarios by allowing
+users to apply forces (red dots) directly on the sketch. (a) shows sketch‑based structural analysis for identifying the weak regions (warmer
 colors) on the sketched structure. (b) illustrates how our StructureLDM supports users perform structural refinement on these weak regions
 of sketches: the upper row presents the progressively refined sketches, while the bottom row shows corresponding stress maps computed by
 our system. (c) demonstrates the application of our structural analysis to product sketches in the OpenSketch dataset
+</figcaption>
+</figure>
 
-## Abstract
 
-In the early stage of sketch-based product design for digital fabrication, rapid structural analysis serves as an efficient way to
+<section>
+<h2>Abstract</h2>
+<p>
+In the early stage of sketch‑based product design for digital fabrication, rapid structural analysis serves as an efficient way to
 analyze the weakness and optimize the structure of the designed product and is widely adopted in agile prototyping. However,
-performing sketch-based structural analysis during the design phase is challenging due to the abstract nature of sketches,
-improper representation of external forces, and insufficient analysis models. Existing sketch-based structural analysis methods
+performing sketch‑based structural analysis during the design phase is challenging due to the abstract nature of sketches,
+improper representation of external forces, and insufficient analysis models. Existing sketch‑based structural analysis methods
 typically rely on simple mapping from input sketches and force maps to output stress maps in the generation procedure, suffering
 from limited analysis quality due to poor spatial control of external forces. To address these challenges, we reformulate the
-sketch-based structural analysis problem as a conditional generation task and propose StructureLDM, a novel framework for
-sketch-based structural analysis that leverages the latent-diffusion model as the generative engine for the analytical stress map
+sketch‑based structural analysis problem as a conditional generation task and propose StructureLDM, a novel framework for
+sketch‑based structural analysis that leverages the latent‑diffusion model as the generative engine for the analytical stress map
 synthesis. Our StructureLDM takes as input a sketch and the coordinates of the external force applied at the target position on
-the sketch. With a specifically-designed force-point embedding module for precise spatial force control and a Fourier-domain
-loss for the high-frequency contexts enhancement, it automatically predicts an accurate stress map. Comprehensive qualitative
+the sketch. With a specifically‑designed force‑point embedding module for precise spatial force control and a Fourier‑domain
+loss for the high‑frequency contexts enhancement, it automatically predicts an accurate stress map. Comprehensive qualitative
 and quantitative experiments show the effectiveness of our proposed method, significantly surpassing previous approaches in
-terms of fine-grained spatial force controllability and high-precision stress map generation.
-
-## Interface 
-
-<img src="img/figure6.png" alt="demo" style="zoom: 20%;" />
-
-###### **Fig 2**: Our Sketching Interface.
+terms of fine‑grained spatial force controllability and high‑precision stress map generation.
+</p>
+</section>
 
 
-## Pipeline
-
-<img src="img/fig3.png" alt="network_sk2stress" style="zoom:23%;" />
-
-**Fig 3**:  The system diagram of StructureLDM. (a) shows the overall architecture: an input sketch is first encoded into a latent space via a
-VAE encoder and then perturbed with noise (omitted here for clarity). Meanwhile, the input force point is projected into a high-dimensional
-space through our force-point embedding module (FEM) and then concatenated with timestep to jointly guide the latent diffusion process.
-The final stress map is then reconstructed from the refined latent code by the VAE decoder. (b) illustrates the force-point embedding module
-(FEM), which maps 2D coordinates to a high-dimensional embedding space enabling a fine-grained, discriminative representation of the
-force point. (c) depicts the Fourier-domain loss (FDL), which emphasizes the high-frequency details and better aligns the generated stress
-map with the visual characteristics of the ground-truth stress distribution.
-
-## Sketch-based Structure Analysis
-
-<img src="img/fig7.png" alt="result_gallery" style="zoom:14%;" />
-
-**Fig 4**:  Nine representative categories in our collected dataset. The top row displays the input sketches with the applied external force
-marked by red dots, while the bottom row shows the generated stress maps with our StructureLDM. 
-
-## Qualitative comparison 
-
-<img src="img/fig8.png" alt="user_study-Page-4" style="zoom: 12%;" />
-
-**Fig 5**: Qualitative comparison of different approaches. The leftmost column shows the input sketches and applied force, and the remaining
-columns present the generated stress maps and the corresponding ground-truth results, respectively.
-
-## Error maps of different approaches
-
-<img src="img/fig9.png" alt="opensketch" style="zoom:16%;" />
-
-###### **Fig 6**: Error maps of different approaches (visualizing the deviation between the generated and ground-truth stress maps). Less saturated red and lighter colors indicate smaller deviation from ground-truth. 
-
-## Unseen category
-
-<img src="img/fig10.png" alt="opensketch" style="zoom:16%;" />
-
-###### **Fig 7**: Cross-category generalization. We use models trained on chairs and vases to generalize to previously unseen freehand sketches of benches, stools, and mugs.
+<section>
+<h2>Interface</h2>
+<figure>
+<img src="img/figure6.png" alt="demo" width="900">
+<figcaption><strong>Fig 2</strong>: Our Sketching Interface.</figcaption>
+</figure>
+</section>
 
 
-## Video
+<section>
+<h2>Pipeline</h2>
+<figure>
+<img src="img/fig3.png" alt="network_sk2stress" width="920">
+<figcaption>
+<strong>Fig 3</strong>: The system diagram of StructureLDM. (a) shows the overall architecture: an input sketch is first encoded into a latent space via a
+VAE encoder and then perturbed with noise (omitted here for clarity). Meanwhile, the input force point is projected into a high‑dimensional
+space through our force‑point embedding module (FEM) and then concatenated with timestep to jointly guide the latent diffusion process.
+The final stress map is then reconstructed from the refined latent code by the VAE decoder. (b) illustrates the force‑point embedding module
+(FEM), which maps 2D coordinates to a high‑dimensional embedding space enabling a fine‑grained, discriminative representation of the
+force point. (c) depicts the Fourier‑domain loss (FDL), which emphasizes the high‑frequency details and better aligns the generated stress
+map with the visual characteristics of the ground‑truth stress distribution.
+</figcaption>
+</figure>
+</section>
 
+
+<section>
+<h2>Sketch‑based Structure Analysis</h2>
+<figure>
+<img src="img/fig7.png" alt="result_gallery" width="920">
+<figcaption>
+<strong>Fig 4</strong>: Nine representative categories in our collected dataset. The top row displays the input sketches with the applied external force
+marked by red dots, while the bottom row shows the generated stress maps with our StructureLDM.
+</figcaption>
+</figure>
+</section>
+
+
+<section>
+<h2>Qualitative comparison</h2>
+<figure>
+<img src="img/fig8.png" alt="user_study‑Page‑4" width="940">
+<figcaption>
+<strong>Fig 5</strong>: Qualitative comparison of different approaches. The leftmost column shows the input sketches and applied force, and the remaining
+columns present the generated stress maps and the corresponding ground‑truth results, respectively.
+</figcaption>
+</figure>
+</section>
+
+
+<section>
+<h2>Error maps of different approaches</h2>
+<figure>
+<img src="img/fig9.png" alt="opensketch" width="920">
+<figcaption>
+<strong>Fig 6</strong>: Error maps of different approaches (visualizing the deviation between the generated and ground‑truth stress maps). Less saturated red and lighter colors indicate smaller deviation from ground‑truth.
+</figcaption>
+</figure>
+</section>
+
+
+<section>
+<h2>Unseen category</h2>
+<figure>
+<img src="img/fig10.png" alt="opensketch" width="920">
+<figcaption>
+<strong>Fig 7</strong>: Cross‑category generalization. We use models trained on chairs and vases to generalize to previously unseen freehand sketches of benches, stools, and mugs.
+</figcaption>
+</figure>
+</section>
+
+
+<section>
+<h2>Video</h2>
 <video controls preload="metadata" width="1200" poster="">
   <source src="img/demo.mp4" type="video/mp4">
-  你的浏览器不支持该视频播放
+  Your browser does not support video playback.
 </video>
+</section>
 
 
-## Citation 
+<section>
+<h2>Citation</h2>
+<pre class="bib">
+% put your bibtex here
+</pre>
+</section>
 
-
-
+</body>
+</html>
