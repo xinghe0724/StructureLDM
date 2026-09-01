@@ -7,62 +7,77 @@
 <style>
 *{box-sizing:border-box;}
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans‑serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   max-width: 1100px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
-  line-height: 1.6;
+  line-height: 1.7;
   color:#222;
 }
 h1 {
   font-size:1.8rem;
   text-align:center;
-  margin-bottom:1rem;
+  margin-bottom:1.2rem;
 }
 .authors {
   text-align:center;
-  margin-bottom:0.6rem;
+  margin-bottom:0.8rem;
   font-size:1.05rem;
 }
 .affiliations {
   text-align:center;
   font-size:0.95rem;
   color:#444;
-  margin-bottom:1rem;
+  margin-bottom:1.2rem;
 }
 .conf {
   text-align:center;
-  margin-bottom:2.2rem;
+  margin-bottom:2.5rem;
 }
 section {
-  margin: 2.4rem 0;
+  margin: 2.8rem 0; /* 每个大章节上下留白，模拟markdown空行 */
 }
 h2 {
   font-size:1.4rem;
   border-bottom:1px solid #ddd;
   padding-bottom:0.3rem;
+  margin-bottom:1rem;
+}
+p {
+  margin-bottom:1rem; /* 段落之间空一行，等价markdown两个回车 */
+  text-align:justify;
 }
 figure {
-  margin:1.6rem 0;
+  margin: 2rem 0; /* 图片和上下文字拉开距离 */
   text-align:center;
 }
 figure img {
   max-width:100%;
   height:auto;
+  border: none;
 }
 figcaption {
   font-size:0.92rem;
   color:#333;
-  margin-top:0.5rem;
+  margin-top:0.6rem;
+  text-align:justify;
 }
 video {
   max-width:100%;
+  margin:1rem 0;
 }
 pre.bib {
   background:#f6f6f6;
   padding:1rem;
   overflow-x:auto;
   font-size:0.9rem;
+}
+a {
+  color:#0055aa;
+  text-decoration:none;
+}
+a:hover{
+  text-decoration:underline;
 }
 </style>
 </head>
@@ -111,8 +126,10 @@ analyze the weakness and optimize the structure of the designed product and is w
 performing sketch‑based structural analysis during the design phase is challenging due to the abstract nature of sketches,
 improper representation of external forces, and insufficient analysis models. Existing sketch‑based structural analysis methods
 typically rely on simple mapping from input sketches and force maps to output stress maps in the generation procedure, suffering
-from limited analysis quality due to poor spatial control of external forces. To address these challenges, we reformulate the
-sketch‑based structural analysis problem as a conditional generation task and propose StructureLDM, a novel framework for
+from limited analysis quality due to poor spatial control of external forces.
+</p>
+<p>
+To address these challenges, we reformulate the sketch‑based structural analysis problem as a conditional generation task and propose StructureLDM, a novel framework for
 sketch‑based structural analysis that leverages the latent‑diffusion model as the generative engine for the analytical stress map
 synthesis. Our StructureLDM takes as input a sketch and the coordinates of the external force applied at the target position on
 the sketch. With a specifically‑designed force‑point embedding module for precise spatial force control and a Fourier‑domain
