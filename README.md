@@ -1,4 +1,4 @@
-# *Sketch2Stress:*  Sketching with Structural Stress Awareness 
+# *StructureLDM:*  A Latent Diffusion Model for Sketch-based Structural Analysis 
 ###### [**Deng Yu**](https://scholar.google.com/citations?user=Yi4KFWwAAAAJ&hl=en)&nbsp;&nbsp; [**Chufeng Xiao**](https://scholar.google.com/citations?user=2HLwZGYAAAAJ&hl=en&oi=ao) &nbsp;&nbsp; [**Manfred Lau***](https://www.scm.cityu.edu.hk/people/lau-chung-man-manfred) &nbsp;&nbsp;  [**Hongbo Fu***](https://sweb.cityu.edu.hk/hongbofu/)
 
 ######  School of Creative Media, City University of Hong Kong
