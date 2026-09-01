@@ -73,31 +73,21 @@ columns present the generated stress maps and the corresponding ground-truth res
 
 ###### **Fig 6**: Error maps of different approaches (visualizing the deviation between the generated and ground-truth stress maps). Less saturated red and lighter colors indicate smaller deviation from ground-truth. 
 
+## Unseen category
+
+<img src="img/fig10.png" alt="opensketch" style="zoom:16%;" />
+
+###### **Fig 7**: Cross-category generalization. We use models trained on chairs and vases to generalize to previously unseen freehand sketches of benches, stools, and mugs.
+
 ## Video
 
 <video controls preload="metadata" width="1200" poster="">
-  <source src="img/sketch2stress.mp4" type="video/mp4">
+  <source src="img/demo.mp4" type="video/mp4">
   你的浏览器不支持该视频播放
 </video>
 
 
 
-
 ## Citation 
 
-```tex
-@ARTICLE{yu2024sketch2stress,
-  author={Yu, Deng and Xiao, Chufeng and Lau, Manfred and Fu, Hongbo},
-  journal={IEEE Transactions on Visualization and Computer Graphics}, 
-  title={Sketch2Stress: Sketching With Structural Stress Awareness}, 
-  year={2024},
-  volume={30},
-  number={10},
-  pages={6851-6865},
-  doi={10.1109/TVCG.2023.3342119}
-  }
-```
 
-
-
-<img src="img/SCM_Logo.png" alt="SCM_Logo" style="zoom:50%;" />
