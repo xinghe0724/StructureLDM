@@ -1,16 +1,22 @@
 # *StructureLDM:*  A Latent Diffusion Model for Sketch-based Structural Analysis 
 ###### [**Deng Yu**](https://scholar.google.com/citations?user=Yi4KFWwAAAAJ&hl=en)&nbsp;&nbsp; [**Guangtao Liu**]() &nbsp;&nbsp; [**Lin Jiao**]() &nbsp;&nbsp;  [**Yujie Liu***]()&nbsp;&nbsp; [**Zhumin Chen**]() &nbsp;&nbsp; [**Wanchao Su**]() &nbsp;&nbsp;
 
-######  School of Creative Media, City University of Hong Kong
+######  1 School of Artificial Intelligence, Shandong University, Shandong, China
+######  2 Qingdao Institute of Software, College of Computer Science and Technology, China University of Petroleum (East China), Shandong Key Laboratory of Intelligent Oil and Gas Industrial Software, China
+######  3 SensiLab, Faculty of Information Technology, Monash University, Melbourne, Australia
 
 ###### * Corresponding author
 
-###### Accepted by [IEEE TVCG](https://www.computer.org/csdl/journal/tg)
+###### Accepted by [PG 20206](https://pacificgraphics2026.github.io/)
 
 
-<img src="img/teaser_stress.jpg" alt="teaser_stress" style="zoom:12%;" />
+<img src="img/figure1.pdf" alt="teaser_stress" style="zoom:12%;" />
 
-**Fig. 1 **: Our *Sketch2Stress* system supports users to easily perform structural analysis on their freely sketched objects by assigning forces at desired locations (shown in red dots) (a) and structural refinement (in each example, the upper row shows the progressively refined sketches while the bottom row shows our computed stress maps) on the weak regions of problematic sketched objects with real-time feedback of a stress map along with their editing operations (b). We also show that our system can handle professional product sketches, e.g., those in the OpenSketch dataset (c). In (c), we illustrate two examples of using professional product sketches for structural analysis, starting from the concept sketches, then the presentation sketches, the clean sketches, and finally, our generated structural stress maps.
+**Fig. 1 **: Our StructureLDM enables fast, interactive structural analysis across various sketch-based application scenarios by allowing
+users to apply forces (red dots) directly on the sketch. (a) shows sketch-based structural analysis for identifying the weak regions (warmer
+colors) on the sketched structure. (b) illustrates how our StructureLDM supports users perform structural refinement on these weak regions
+of sketches: the upper row presents the progressively refined sketches, while the bottom row shows corresponding stress maps computed by
+our system. (c) demonstrates the application of our structural analysis to product sketches in the OpenSketch dataset
 
 ## Abstract
 
