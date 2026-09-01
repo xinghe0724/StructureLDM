@@ -79,12 +79,7 @@ columns present the generated stress maps and the corresponding ground-truth res
 
 ###### **Fig 7**: Cross-category generalization. We use models trained on chairs and vases to generalize to previously unseen freehand sketches of benches, stools, and mugs.
 
-## Video
 
-<video controls preload="metadata" width="1200" poster="">
-  <source src="img/demo.mp4" type="video/mp4">
-  你的浏览器不支持该视频播放
-</video>
 
 
 
