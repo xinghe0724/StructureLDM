@@ -10,7 +10,7 @@
 ###### Accepted by [PG 20206](https://pacificgraphics2026.github.io/)
 
 
-<img src="img/fig.png" alt="teaser_stress" style="zoom:12%;" />
+<img src="img/fig1.png" alt="teaser_stress" style="zoom:12%;" />
 
 **Fig. 1 **: Our StructureLDM enables fast, interactive structural analysis across various sketch-based application scenarios by allowing
 users to apply forces (red dots) directly on the sketch. (a) shows sketch-based structural analysis for identifying the weak regions (warmer
@@ -20,38 +20,58 @@ our system. (c) demonstrates the application of our structural analysis to produ
 
 ## Abstract
 
-In the process of product design and digital fabrication, structural analysis of a designed prototype is a fundamental and essential step. However, such a step is usually invisible or inaccessible to designers at the early sketching phase. This limits the users’ ability to contemplate a shape’s physical properties and structural soundness. To bridge this gap, we introduce a novel approach *Sketch2Stress* that allows users to perform structural analysis of desired objects at the sketching stage, as displayed in Figure 1. This method takes as input a sketch and a point map to specify the location of a user-assigned external force. It automatically predicts a normal map and a corresponding structural stress map distributed over the user-sketched underlying object. In this way, our method empowers designers to easily examine the stress sustained everywhere and identify potential problematic regions over their sketched object. Furthermore, combined with the predicted normal map, users are able to conduct a region-wise structural analysis efficiently by aggregating the stress effects of multiple forces in the same direction. We demonstrate the effectiveness and practicality of our system with extensive experiments and two user studies.
+In the early stage of sketch-based product design for digital fabrication, rapid structural analysis serves as an efficient way to
+analyze the weakness and optimize the structure of the designed product and is widely adopted in agile prototyping. However,
+performing sketch-based structural analysis during the design phase is challenging due to the abstract nature of sketches,
+improper representation of external forces, and insufficient analysis models. Existing sketch-based structural analysis methods
+typically rely on simple mapping from input sketches and force maps to output stress maps in the generation procedure, suffering
+from limited analysis quality due to poor spatial control of external forces. To address these challenges, we reformulate the
+sketch-based structural analysis problem as a conditional generation task and propose StructureLDM, a novel framework for
+sketch-based structural analysis that leverages the latent-diffusion model as the generative engine for the analytical stress map
+synthesis. Our StructureLDM takes as input a sketch and the coordinates of the external force applied at the target position on
+the sketch. With a specifically-designed force-point embedding module for precise spatial force control and a Fourier-domain
+loss for the high-frequency contexts enhancement, it automatically predicts an accurate stress map. Comprehensive qualitative
+and quantitative experiments show the effectiveness of our proposed method, significantly surpassing previous approaches in
+terms of fine-grained spatial force controllability and high-precision stress map generation.
 
 ## Interface 
 
-<img src="img/demo.png" alt="demo" style="zoom: 20%;" />
+<img src="img/figure6.png" alt="demo" style="zoom: 20%;" />
 
 ###### **Fig 2**: Our Sketching Interface.
 
 
 ## Pipeline
 
-<img src="img/network_sk2stress.jpg" alt="network_sk2stress" style="zoom:23%;" />
+<img src="img/fig3.png" alt="network_sk2stress" style="zoom:23%;" />
 
-**Fig 3**:  Overview of the multi-branch generator of *Sketch2Stress*. Given an input sketch (upper left) and an input point map (lower left) indicating a force location, the multi-branch generator uses its encoder to learn a sketch-force joint feature space, and then leverages two decoders to synthesize the corresponding stress map (lower branch) and a normal map (upper branch). We use warmer colors (reds and yellows) to show high stress and cooler colors (greens and blues) to show low stress. The normal map infers the force direction at the input force location. A shape mask and a point-attention mask are proposed to further emphasize the shape boundaries and force locations during the generation process.
+**Fig 3**:  The system diagram of StructureLDM. (a) shows the overall architecture: an input sketch is first encoded into a latent space via a
+VAE encoder and then perturbed with noise (omitted here for clarity). Meanwhile, the input force point is projected into a high-dimensional
+space through our force-point embedding module (FEM) and then concatenated with timestep to jointly guide the latent diffusion process.
+The final stress map is then reconstructed from the refined latent code by the VAE decoder. (b) illustrates the force-point embedding module
+(FEM), which maps 2D coordinates to a high-dimensional embedding space enabling a fine-grained, discriminative representation of the
+force point. (c) depicts the Fourier-domain loss (FDL), which emphasizes the high-frequency details and better aligns the generated stress
+map with the visual characteristics of the ground-truth stress distribution.
 
 ## Sketch-based Structure Analysis
 
-<img src="img/result_gallery.jpg" alt="result_gallery" style="zoom:14%;" />
+<img src="img/fig7.png" alt="result_gallery" style="zoom:14%;" />
 
-**Fig 4**:  Result gallery of eleven categories in our synthetic sketch-to-stress dataset. The top row shows the input sketches and external force locations (plotted as red dots), while the middle and bottom rows are our generated normal maps (with predicted force directions at the center of red boxes) and synthesized stress maps. 
+**Fig 4**:  Nine representative categories in our collected dataset. The top row displays the input sketches with the applied external force
+marked by red dots, while the bottom row shows the generated stress maps with our StructureLDM. 
 
-## Structure Refinement without/with our *Sketch2Stress*
+## Qualitative comparison 
 
-<img src="img/user_study-Page-4.png" alt="user_study-Page-4" style="zoom: 12%;" />
+<img src="img/fig8.png" alt="user_study-Page-4" style="zoom: 12%;" />
 
-**Fig 5**: Each triplet contains a structurally problematic sketch under different force configurations (red dots on sketches), and the user-refined results without and with our tool, respectively. The corresponding stress maps are provided under the refined sketches.
+**Fig 5**: Qualitative comparison of different approaches. The leftmost column shows the input sketches and applied force, and the remaining
+columns present the generated stress maps and the corresponding ground-truth results, respectively.
 
-## Structural Analysis on Real Product Sketches
+## Error maps of different approaches
 
-<img src="img/opensketch.jpg" alt="opensketch" style="zoom:16%;" />
+<img src="img/fig9.png" alt="opensketch" style="zoom:16%;" />
 
-###### **Fig 6**: Our *Sketch2Stress* method applied to the OpenSketch dataset. The concept and presentation sketches of the bump, shampoo bottle, and potato chip (in the first, second, and third rows) are from ”Professional1” while the bottom two rows of the tube and the house are from ”Professional5” and ”Professional6” in the OpenSketch dataset. Please zoom in to examine the details.
+###### **Fig 6**: Error maps of different approaches (visualizing the deviation between the generated and ground-truth stress maps). Less saturated red and lighter colors indicate smaller deviation from ground-truth. 
 
 ## Video
 
