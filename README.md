@@ -10,7 +10,7 @@
 ###### Accepted by [PG 20206](https://pacificgraphics2026.github.io/)
 
 
-<img src="img/fig1.png" alt="teaser_stress" style="zoom:12%;" />
+<img src="img/fig1.jpg" alt="teaser_stress" style="zoom:12%;" />
 
 **Fig. 1**: Our StructureLDM enables fast, interactive structural analysis across various sketch-based application scenarios by allowing
 users to apply forces (red dots) directly on the sketch. (a) shows sketch-based structural analysis for identifying the weak regions (warmer
